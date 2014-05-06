@@ -150,6 +150,10 @@ app.get('/api/venmo', passportConf.isAuthenticated, passportConf.isAuthorized, a
 app.post('/api/venmo', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.postVenmo);
 app.get('/api/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getLinkedin);
 app.get('/api/instagram', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getInstagram);
+app.get('/thoughts', thoughtController.allThoughts);
+app.get('/thought/:id', thoughtController.getThought);
+app.put('/thought', thoughtController.putThought);
+app.post('/thought', thoughtController.postThought);
 
 /**
  * OAuth routes for sign-in.

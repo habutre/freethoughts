@@ -5,4 +5,11 @@ block content
   p.lead
     | Write sentences up to 250 characters trying to share your thoughts....
   p
-    input(type=text, name='txtYell', placeHolder='Write your 250 chars....', size=90) 
+    form.form-horizontal(role='form', action='/thought', method='POST')
+      input(type='hidden', name='_csrf', value=_csrf)
+      input(type=text, name='txtYell', placeHolder='Write your 250 chars....', size=90) 
+      button.btn.btn-default(type='submit')
+        | Share
+
+  p
+    #{users} 
