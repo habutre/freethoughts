@@ -5,4 +5,17 @@ block content
   p.lead
     | Write sentences up to 250 characters trying to share your thoughts....
   p
-    input(type=text, name='txtYell', placeHolder='Write your 250 chars....', size=90) 
+    form.form-horizontal(id='thought-form', method='POST')
+      input(type='hidden', id='_csrf', name='_csrf', value=_csrf)
+      input(type='text', id='txtThought', name='txtThought', placeHolder='Write your 250 chars....', size='90')
+      button.btn.btn-success(type='submit')
+        |  Send
+
+  p
+    div.row
+      each t, i in thoughtList
+        div.col-md-12
+            | Thinker:  #{t.thinker} -- #{t.thought}
+            if t.create_at
+              strong
+                = " from " + moment(t.create_at).fromNow()
