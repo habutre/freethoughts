@@ -20,6 +20,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var expressValidator = require('express-validator');
 var connectAssets = require('connect-assets');
+var moment = require('moment');
 
 /**
  * Load controllers.
@@ -107,12 +108,14 @@ app.use(function(req, res, next) {
   req.session.returnTo = req.path;
   next();
 });
+app.locals.moment = require('moment');
 
 /**
  * Application routes.
  */
 
 app.get('/', homeController.index);
+app.post('/', homeController.postThought);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
@@ -150,10 +153,6 @@ app.get('/api/venmo', passportConf.isAuthenticated, passportConf.isAuthorized, a
 app.post('/api/venmo', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.postVenmo);
 app.get('/api/linkedin', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getLinkedin);
 app.get('/api/instagram', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getInstagram);
-app.get('/thoughts', thoughtController.allThoughts);
-app.get('/thought/:id', thoughtController.getThought);
-app.put('/thought', thoughtController.putThought);
-app.post('/thought', thoughtController.postThought);
 
 /**
  * OAuth routes for sign-in.
