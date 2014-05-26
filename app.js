@@ -109,7 +109,9 @@ app.use(function(req, res, next) {
   req.session.returnTo = req.path;
   next();
 });
+// app.locals make the libs available on client side
 app.locals.moment = require('moment');
+app.locals.secrets = require('./config/secrets');
 
 /**
  * Application routes.

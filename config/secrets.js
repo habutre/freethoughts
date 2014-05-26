@@ -4,6 +4,8 @@ module.exports = {
 
     captcha_priv: process.env.RECAPTCHA_PRIV_KEY || "Your re-Captcha private key",
 
+    captcha_pub: process.env.RECAPTCHA_PUB_KEY || "Your re-Captcha public key",
+
     sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
 
     mailgun: {
