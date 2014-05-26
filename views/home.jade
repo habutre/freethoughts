@@ -11,6 +11,13 @@ block content
       button.btn.btn-success(type='submit')
         |  Send
 
+      script(type="text/javascript", src="http://www.google.com/recaptcha/api/challenge?k=6LfKHfQSAAAAALuUsWE5B90kclKSQZZgRgFTqtCP")
+      noscript
+        iframe(src="http://www.google.com/recaptcha/api/noscript?k=6LfKHfQSAAAAALuUsWE5B90kclKSQZZgRgFTqtCP", height="300", width="400", frameborder="0")
+        br
+        textarea(name="recaptcha_challenge_field", rows="3", cols="40")
+        input(type="hidden", name="recaptcha_response_field", value="manual_challenge")
+
   p
     div.row
       each t, i in thoughtList

@@ -5,6 +5,9 @@
     "type": "git",
     "url": "https://github.com/habutre/freethoughts.git"
   },
+  "engines": {
+      "node": "0.10.24"
+  },
   "scripts": {
     "start": "node app.js",
     "test": "mocha"
@@ -33,6 +36,7 @@
     "less": "^1.7.0",
     "lusca": "^1.0.0",
     "method-override": "^1.0.0",
+    "moment": "~2.6.0",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",
     "node-foursquare": "^0.2.1",
@@ -47,6 +51,7 @@
     "passport-local": "^1.0.0",
     "passport-oauth": "^1.0.0",
     "passport-twitter": "^1.0.2",
+    "qs": "^0.6.6",
     "request": "^2.34.0",
     "stripe": "^2.5.5",
     "tumblr.js": "^0.0.4",
@@ -54,8 +59,7 @@
     "twit": "^1.1.14",
     "uglify-js": "^2.4.13",
     "underscore": "^1.6.0",
-    "validator": "^3.11.0",
-    "moment": "~2.6.0"
+    "validator": "^3.11.0"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
