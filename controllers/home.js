@@ -39,7 +39,7 @@ exports.postThought = function(req, res) {
   // check the captcha result
   var challenge = req.body.recaptcha_challenge_field;
   var challenge_resp = req.body.recaptcha_response_field;
-  var post_data = {"clientIP": req.connection.remoteAddress, "challenge": challenge, "response": challenge_resp};
+  var post_data = {"clientIP": req.headers['X-Forwarded-For'], "challenge": challenge, "response": challenge_resp};
 
   captchaResponse(post_data, function(resp){
     var ret = resp + ""; // force to convert in string
