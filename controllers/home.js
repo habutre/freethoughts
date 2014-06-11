@@ -39,7 +39,7 @@ exports.postThought = function(req, res) {
   // check the captcha result
   var challenge = req.body.recaptcha_challenge_field;
   var challenge_resp = req.body.recaptcha_response_field;
-  var post_data = {"clientIP": req.headers['X-Forwarded-For'], "challenge": challenge, "response": challenge_resp};
+  var post_data = {"clientIP": (req.headers['X-Forwarded-For'] || req.connection.remoteAddress), "challenge": challenge, "response": challenge_resp};
 
   captchaResponse(post_data, function(resp){
     var ret = resp + ""; // force to convert in string
@@ -69,14 +69,19 @@ captchaResponse = function(challenge_data, callbackResponse) {
   var post_data = qs.stringify({"privatekey": secrets.captcha_priv, "remoteip": challenge_data.clientIP, "challenge":   challenge_data.challenge, "response": challenge_data.response});
   console.log("LOG::Post data: " + post_data);
 
-  var options = {"hostname":"www.google.com",
-    "port":"80",
-    "path":"/recaptcha/api/verify",
-    "method":"POST",
-    "headers":{"Content-Type":"application;x-www-form-urlencoded",
-      "Content-Length": post_data.length}};
+  var options = {
+    hostname:"www.google.com",
+    port:"80",
+    path:"/recaptcha/api/verify",
+    method:"POST",
+    headers:{"Content-Type":"application/x-www-form-urlencoded",
+      "Content-Length": post_data.length}
+  };
 
   var req = http.request(options, function(res){
+    console.log("Status: " + res.statusCode);
+    console.log("Headers " + JSON.stringify(res.headers));
+    res.setEncoding('utf-8');
     res.on('data', function(chunk){
       var resp_data = chunk;
       console.log("Response return: " + resp_data);
