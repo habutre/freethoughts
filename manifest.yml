@@ -1,0 +1,9 @@
+---
+# This file is need to deploy on bluemix (ace.ng.bluemix.net)
+applications:
+- name: freethoughts
+  memory: 512m
+  instances: 1
+  host: freethoughts
+  domain: ng.bluemix.net
+  path: .
