@@ -5,5 +5,5 @@ applications:
   memory: 512m
   instances: 1
   host: freethoughts
-  domain: ng.bluemix.net
+  domain: mybluemix.net
   path: .
