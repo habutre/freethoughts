@@ -1,15 +1,37 @@
 extends layout
 
 block content
+  script(type="text/javascript").
+    var RecaptchaOptions = {theme: "custom", custom_theme_widget: "recaptcha_widget"};
+
   h1 Yell, this is your place!
   p.lead
     | Write sentences up to 250 characters trying to share your thoughts....
   p
     form.form-horizontal(id='thought-form', method='POST')
       input(type='hidden', id='_csrf', name='_csrf', value=_csrf)
-      input(type='text', id='txtThought', name='txtThought', placeHolder='Write your 250 chars....', size='90')
-      button.btn.btn-success(type='submit')
-        |  Send
+      br
+      div
+        div.captcha.captcha-inline
+          input(type='text', id='txtThought', name='txtThought', placeHolder='Write your 250 chars....', size='90')
+          div.catpcha(id="recaptcha_widget", style="diplay:none")
+            div.captcha-inline(id="recaptcha_image")
+            input.captcha-inline(type="text", id="recaptcha_response_field", name="recaptcha_response_field", placeHolder="Enter captcha challenge...")
+            div.captcha-inline
+              a(href="javascript:Recaptcha.reload()")
+                img(id="recaptcha_reload", width="25", height="17", src="http://www.google.com/recaptcha/api/img/red/refresh.gif", alt="Get a new challenge")
+            div.captcha-inline(class="recaptcha_only_if_image")
+              a(href="javascript:Recaptcha.switch_type('audio')")
+                img(id="recaptcha_switch_audio", width="25", height="16", src="http://www.google.com/recaptcha/api/img/red/audio.gif", alt="Get a audio challenge")
+            div.captcha-inline(class="recaptcha_only_if_audio")
+              a(href="javascript:Recaptcha.switch_type('image')")
+                img(id="recaptcha_switch_img", width="25", height="16", src="http://www.google.com/recaptcha/api/img/red/text.gif", alt="Get a visual challenge")
+            div.captcha-inline
+              a(href="javascript:Recaptcha.showhelp()")
+                img(id="recaptcha_help", width="25", height="16", src="http://www.google.com/recaptcha/api/img/red/help.gif", alt="Help")
+        div.captcha-inline
+          button.btn.btn-success(type='submit')
+            |  Send
 
       script(type="text/javascript", src="http://www.google.com/recaptcha/api/challenge?k=" + secrets.captcha_pub)
       noscript
