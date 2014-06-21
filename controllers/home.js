@@ -52,7 +52,7 @@ exports.postThought = function(req, res) {
 
     // prepare the thought to be stored
     var home = new Home({
-      thinker: 'anonymous',
+      thinker: req.body.txtThinker || "anonymous",
       thought: req.body.txtThought,
       create_at: new Date()
     });

@@ -11,8 +11,10 @@ block content
     form.form-horizontal(id='thought-form', method='POST')
       input(type='hidden', id='_csrf', name='_csrf', value=_csrf)
       br
-      div
-        div.captcha.captcha-inline
+      div.row
+        div.col-md-8.col-sm-8
+          input(type="text", id="txtThinker", name="txtThinker", placeHolder="Who are you?")
+          br
           input(type='text', id='txtThought', name='txtThought', placeHolder='Write your 250 chars....', size='90')
           div.catpcha(id="recaptcha_widget", style="diplay:none")
             div.captcha-inline(id="recaptcha_image")
@@ -29,7 +31,7 @@ block content
             div.captcha-inline
               a(href="javascript:Recaptcha.showhelp()")
                 img(id="recaptcha_help", width="25", height="16", src="http://www.google.com/recaptcha/api/img/red/help.gif", alt="Help")
-        div.captcha-inline
+        div.col-md-4.col-sm-2
           button.btn.btn-success(type='submit')
             |  Send
 
