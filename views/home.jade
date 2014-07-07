@@ -4,9 +4,20 @@ block content
   script(type="text/javascript").
     var RecaptchaOptions = {theme: "custom", custom_theme_widget: "recaptcha_widget"};
 
-  h1 Yell, this is your place!
-  p.lead
-    | Write sentences up to 250 characters trying to share your thoughts....
+  div.row
+    div.col-md-8
+      h1 Yell, this is your place!
+      p.lead
+        | Write sentences up to 250 characters trying to share your thoughts....
+    div.col-md-2
+      div.feeling.feeling-good
+        p
+          | Feelings &uarr; 54%
+
+    div.col-md-2
+      div.feeling.feeling-bad
+        p
+          | Feelings &darr; 46%
   p
     form.form-horizontal(id='thought-form', method='POST')
       input(type='hidden', id='_csrf', name='_csrf', value=_csrf)
